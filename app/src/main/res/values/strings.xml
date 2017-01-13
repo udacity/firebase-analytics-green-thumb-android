@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2017 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="app_name">Green Thumb</string>
+    <string name="content_authority">com.google.firebase.udacity.greenthumb</string>
+
+    <string name="plant_credits">Credits: %1$d</string>
+    <plurals name="number_of_credits">
+        <!--
+             As a developer, you should always supply "one" and "other"
+             strings. Your translators will know which strings are actually
+             needed for their language. Always include %d in "one" because
+             translators will need to use %d for languages where "one"
+             doesn't mean 1.
+          -->
+        <item quantity="one">%d credit</item>
+        <item quantity="other">%d credits</item>
+    </plurals>
+
+    <string name="shopping_cart_title">Shopping Cart</string>
+    <string name="shopping_cart_item_added">Added to shopping cart</string>
+    <string name="shopping_cart_empty">Your cart is empty</string>
+    <string name="shopping_cart_checkout">Checkout</string>
+    <string name="shopping_cart_total">Total Credits: %1$d</string>
+    <string name="shopping_cart_quantity_label">Qty</string>
+    <string name="chevron_left">\u2039</string>
+    <string name="chevron_right">\u203A</string>
+    <string name="checkout_progress">Pretending to check out cart…</string>
+    <string name="checkout_complete">Your pretend order has been placed! Have a real nice day!</string>
+
+    <string name="purchases_title">Purchases</string>
+    <string name="purchase_empty">No plants purchased yet</string>
+
+    <string name="about_title">About</string>
+    <string name="about_info_icons">Icons are provided by material.io/icons under the Apache License Version 2.0.</string>
+    <string name="about_info_course">This is the course app used in the How Does Your App Grow? Udacity course by Google.</string>
+    <string name="about_info_plant_descriptions">Plant descriptions are from Plants For a Future (http://www.pfaf.org/) and used under the Creative Commons Attribution 3.0 License.</string>
+    <string name="shopping_cart_remove_description">Remove from cart</string>
+    <string name="menu_profile">My Profile</string>
+
+    <string name="gardening_experience_title">My Profile - How Often Do I Garden?</string>
+    <string name="button_gardening_experience_save">Save</string>
+    <string name="button_gardening_experience_cancel">Not now</string>
+
+    <string-array name="plant_names">
+        <item>Fennel</item>
+        <item>Asparagus</item>
+        <item>Carrot</item>
+        <item>Cucumber</item>
+        <item>Potato</item>
+        <item>Mint</item>
+        <item>Beet</item>
+        <item>Bok choy</item>
+        <item>Snap peas</item>
+    </string-array>
+
+    <string-array name="plant_descriptions">
+        <!-- Description for fennel -->
+        <item>Life Cycle: Perennial\r\nFull Size: 1.5 m (5ft) by 1 m (3ft 3in)\r\nHardiness: zone (UK) 5\r\nFlowers: August to October\r\nSoil Type: light (sandy), medium (loamy), and heavy (clay). Prefers well-drained soil.\r\nSuitable pH: acid, neutral and basic (alkaline) soils\r\nSunlight: Full sun\r\nWatering: Dry or moist soil. Tolerates drought</item>
+        <!-- Description for asparagus -->
+        <item>Life Cycle: Perennial\r\nFull Size: 1.5 m (5ft)\r\nHardiness: zone (UK) 8, frost tender\r\nFlowers: Aug to September\r\nSoil Type: light (sandy) and medium (loamy) soils. Prefers well-drained soil.\r\nSuitable pH: acid, neutral and basic (alkaline) soils\r\nSunlight: Full sun or semi-shade\r\nWatering: Dry or moist soil. Tolerates drought</item>
+        <!-- Description for carrot -->
+        <item>Life Cycle: Biennial\r\nFull Size: 1.2 m (4ft) by 0.3 m (1ft in)\r\nHardiness: zone (UK) 5. Not frost tender\r\nFlowers: Jun to August\r\nSoil Type: light (sandy), medium (loamy), and heavy (clay). Prefers well-drained soil.\r\nSuitable pH: acid, neutral and basic (alkaline) soils\r\nSunlight: Full sun\r\nWatering: Moist soil.</item>
+        <!-- Description for cucumber -->
+        <item>Life Cycle: Annual\r\nFull Size: 2 m (6ft 7in)\r\nHardiness: zone (UK) 10. Frost tender\r\nFlowers: Jul to September\r\nSoil Type: light (sandy), medium (loamy), and heavy (clay). Prefers well-drained soil.\r\nSuitable pH: acid, neutral and basic (alkaline) soils\r\nSunlight: Full sun\r\nWatering: moist soil</item>
+        <!-- Description for potato -->
+        <item>Life Cycle: Perennial\r\nFull Size: 3 m (9ft 10in) at a fast rate\r\nHardiness: zone (UK) 9. Is frost tender\r\nSoil Type: light (sandy) and medium (loamy). Prefers well-drained soil.\r\nSuitable pH: acid, neutral and basic (alkaline) soils\r\nSunlight: Full sun\r\nWatering: moist soil</item>
+        <!-- Description for mint -->
+        <item>Life Cycle: Perennial\r\nHardiness: zone (UK) 6. Not frost tender\r\nFlowers: August to October\r\nSoil Type: light (sandy), medium (loamy), and heavy (clay).\r\nSuitable pH: acid, neutral and basic (alkaline) soils\r\nSunlight: Full sun or semi-shade\r\nWatering: moist soil</item>
+        <!-- Description for beet -->
+        <item>Life Cycle: Biennial\r\nFull Size: 0.9 m (3ft)\r\nHardiness: zone (UK) 5. Not frost tender\r\nSoil Type: light (sandy), medium (loamy), and heavy (clay). Prefers well-drained soil.\r\nSuitable pH: acid, neutral and basic (alkaline) soils. can grow in very alkaline and saline soils.\r\nSunlight: Full sun\r\nWatering: moist soil</item>
+        <!-- Description for boy choy -->
+        <item>Life Cycle: Biennial\r\nFull Size: 0.9 m (3ft)\r\nHardiness: zone (UK) 7. Not frost tender.\r\nFlowers: May to August\r\nSoil Type: light (sandy), medium (loamy), and heavy (clay). Prefers well-drained soil.\r\nSuitable pH: acid, neutral and basic</item>
+        <!-- Description for snap peas -->
+        <item>Life Cycle: Annual\r\nFull Size: 2 m (6ft 7in)\r\nHardiness: Not frost tender.\r\nFlowers: May to September\r\nSoil Type: light (sandy) and medium (loamy). Prefers well-drained soil.\r\nSuitable pH: acid, neutral and basic (alkaline) soils\r\nSunlight: Full sun\r\nWatering: moist soil</item>
+    </string-array>
+
+    <string-array name="gardening_experience_rating_labels">
+        <item>Never</item>
+        <item>About Once a Year</item>
+        <item>About Once a Month</item>
+        <item>About Once a Week</item>
+        <item>About Every Day</item>
+    </string-array>
+</resources>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2017 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/text_view_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        tools:text="Item Name"/>
+
+    <TextView
+        android:id="@+id/text_view_item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_item_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        tools:text="20 credits"/>
+
+    <Button
+        android:id="@+id/button_quantity_subtract"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="@string/chevron_left"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginTop="-16dp"
+        android:layout_toLeftOf="@id/text_view_item_quantity" />
+    <TextView
+        android:id="@+id/text_view_item_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_centerInParent="true"
+        android:textSize="@dimen/text_size_cart_quantity_button"
+        android:layout_alignBaseline="@id/text_view_item_name"
+        android:layout_alignParentTop="true"
+        tools:text="3"/>
+
+    <Button
+        android:id="@+id/button_quantity_add"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="@string/chevron_right"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginTop="-16dp"
+        android:layout_toRightOf="@id/text_view_item_quantity" />
+
+    <TextView
+        android:id="@+id/text_view_quantity_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginTop="24dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/button_quantity_add"
+        android:layout_alignBaseline="@id/text_view_item_price"
+        android:text="@string/shopping_cart_quantity_label"
+        android:textAllCaps="true"/>
+
+    <TextView
+        android:id="@+id/text_view_total_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_toLeftOf="@+id/imagebutton_remove_cart"
+        android:layout_toStartOf="@+id/imagebutton_remove_cart"
+        android:layout_alignBaseline="@id/text_view_item_name"
+        android:layout_centerVertical="true"
+        tools:text="60 credits"/>
+
+    <ImageButton
+        android:id="@id/imagebutton_remove_cart"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        app:srcCompat="@drawable/ic_close_black_24dp"
+        android:contentDescription="@string/shopping_cart_remove_description"/>
+</RelativeLayout>
