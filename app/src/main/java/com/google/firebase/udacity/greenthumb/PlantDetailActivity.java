@@ -94,6 +94,8 @@ public class PlantDetailActivity extends AppCompatActivity
                 int quantity = 1;
                 PlantCartHelper.addCartQuantity(this, mPlant.id, quantity);
                 Snackbar.make(v, R.string.shopping_cart_item_added, Snackbar.LENGTH_SHORT).show();
+
+                Analytics.logEventAddToCart(this, mPlant, quantity);
                 break;
         }
     }
