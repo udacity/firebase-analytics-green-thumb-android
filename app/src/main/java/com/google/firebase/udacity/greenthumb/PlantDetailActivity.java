@@ -126,6 +126,8 @@ public class PlantDetailActivity extends AppCompatActivity
         mToolbar.setTitle(mPlant.name);
         mItemDescription.setText(mPlant.description);
         mItemPrice.setText(getString(R.string.plant_credits, mPlant.price));
+
+        Analytics.logEventViewItem(this, mPlant);
     }
 
     @Override
