@@ -40,6 +40,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
+
+            <!-- Firebase Dynamic Links for plant details -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="greenthumb.example.com" android:scheme="http"/>
+                <data android:host="greenthumb.example.com" android:scheme="https"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".ShoppingCartActivity"
@@ -74,6 +83,7 @@
             android:name=".data.PlantProvider"
             android:authorities="@string/content_authority"
             android:exported="false"/>
+
     </application>
 
 </manifest>

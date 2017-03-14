@@ -45,6 +45,7 @@ dependencies {
     compile 'com.google.firebase:firebase-core:10.2.0'
     compile 'com.google.firebase:firebase-crash:10.2.0'
     compile 'com.google.firebase:firebase-config:10.2.0'
+    compile 'com.google.firebase:firebase-invites:10.2.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
