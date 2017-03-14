@@ -15,9 +15,11 @@
  */
 package com.google.firebase.udacity.greenthumb;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -27,12 +29,20 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.crash.FirebaseCrash;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.google.firebase.udacity.greenthumb.data.DbContract.PlantEntry;
 import com.google.firebase.udacity.greenthumb.data.Preferences;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * {@link MainActivity} displays a list of plants to buy.
@@ -44,6 +54,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     PlantAdapter mAdapter;
 
     private int mRatingChoice = -1;
+
+    private FirebaseRemoteConfig mFirebaseRemoteConfig;
+
+    private static final String PLANT_DESCRIPTIONS_KEY = "plant_descriptions";
+    private static final String DEFAULT_PLANT_DESCRIPTIONS_LEVEL = "basic";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +88,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // Call the line below to report a non-fatal crash
         // reportNonFatalError();
+
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .setDeveloperModeEnabled(BuildConfig.DEBUG)
+                .build();
+        mFirebaseRemoteConfig.setConfigSettings(configSettings);
+
+        Map<String, Object> defaultConfigMap = new HashMap<>();
+        defaultConfigMap.put(PLANT_DESCRIPTIONS_KEY, DEFAULT_PLANT_DESCRIPTIONS_LEVEL);
+        mFirebaseRemoteConfig.setDefaults(defaultConfigMap);
+        fetchConfig();
     }
 
     @Override
@@ -186,5 +212,61 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private void reportNonFatalError() {
         FirebaseCrash.report(new Exception("Reporting a non-fatal error"));
+    }
+
+    private void fetchConfig() {
+        long cacheExpiration = 3600; // 1 hour in seconds
+
+        // If developer mode is enabled reduce cacheExpiration to 0 so that each fetch goes to the
+        // server. This should not be used in release builds.
+        if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
+            cacheExpiration = 0;
+        }
+
+        mFirebaseRemoteConfig.fetch(cacheExpiration)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Make the fetched config available
+                        // via FirebaseRemoteConfig get<type> calls, e.g., getLong, getString.
+                        mFirebaseRemoteConfig.activateFetched();
+
+                        // Update the plant descriptions based on the retrieved value
+                        // for plant_descriptions
+                        applyRetrievedPlantDescriptionsLevel();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // An error occurred when fetching the config.
+                        // Update the plant descriptions based on the retrieved value
+                        // for plant_descriptions
+                        applyRetrievedPlantDescriptionsLevel();
+                    }
+                });
+    }
+
+    private void applyRetrievedPlantDescriptionsLevel() {
+        String plantDescriptionsLevel = mFirebaseRemoteConfig.getString(PLANT_DESCRIPTIONS_KEY);
+        Log.d("MainActivity", "plant_descriptions = " + plantDescriptionsLevel);
+
+        String[] plantDescriptions;
+        if (plantDescriptionsLevel.equals(DEFAULT_PLANT_DESCRIPTIONS_LEVEL)) {
+            plantDescriptions = getResources().getStringArray(R.array.plant_descriptions);
+        } else {
+            plantDescriptions = getResources().getStringArray(R.array.plant_descriptions_advanced);
+        }
+
+        for (int i = 0; i < plantDescriptions.length; i++) {
+            int plantId = i + 1;
+            ContentValues values = new ContentValues();
+            values.put(PlantEntry.COLUMN_DESCRIPTION, plantDescriptions[i]);
+            getContentResolver().update(
+                    PlantEntry.CONTENT_URI,
+                    values,
+                    PlantEntry._ID + " = ?",
+                    new String[] { String.valueOf(plantId) });
+        }
     }
 }
